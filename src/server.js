@@ -1,12 +1,19 @@
 const express = require("express");
 const app = express();
 
-//RUN SERVE INITIALIZATION
-const app = express();
-require("./database");
+const config = require("./config/config.js");
 
-//SETTINGS
-app.set("port", process.env.PORT || 3000);
+const cors = require("cors");
+const path = require("path");
+const morgan = require("morgan");
+
+const CarritoRoute = require("./routes/carrito.router");
+const ProductosRoute = require("./routes/productos.router");
+
+//RUN SERVE INITIALIZATION
+
+// require("./database");
+
 
 //CABECERAS
 app.use(function (req, res, next) {
@@ -19,18 +26,26 @@ app.use(function (req, res, next) {
 });
 
 //MIDLEWARES
-app.use(cors());
-app.use(bodyParser.json());
-app.use(morgan(`dev`));
+
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
+app.use(morgan(`dev`));
+
+//ROUTERS
+app.use("/api/productos", ProductosRoute);
+app.use("/api/carrito", CarritoRoute);
+
+//static files
+app.use(express.static(path.join(__dirname, "public")));
 
 //RUN LISTEN SERVER
-app.listen(app.get("port"), () => {
+app.listen(config.PORT, config.HOST, () => {
   console.log(`###################################`);
-  console.log(`#########   PORT  ${app.get("port")}  ###########`);
-  console.log(`#########   API REST CODER !    ###########`);
-  console.log(`#########   AMBIENTE    ###########`);
-  console.log(`#########   ${process.env.NODE_ENV} ###########`);
+  console.log(`#########   PORT  ${config.PORT}  ###########`);
+  console.log(`#########   API REST CODER! #######`);
+  console.log(`#########     AMBIENTE  ###########`);
+  console.log(`#########   ${config.NODE_ENV} ###########`);
   console.log(`###################################`);
 });
