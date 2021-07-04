@@ -15,13 +15,8 @@ exports.getProductos = (req, res) => {
 };
 
 exports.postProductos = (req, res) => {
-  const { title, price, thumbnail } = req.body;
 
-  let producto = Productos.guardar({
-    title: title,
-    price: price,
-    thumbnail: thumbnail,
-  });
+  let producto = Productos.guardar(req.body);
 
   try {
     return res.json({

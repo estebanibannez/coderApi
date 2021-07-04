@@ -1,4 +1,5 @@
 const fs = require("fs");
+const moment = require("moment");
 
 //obtiene todos los productos
 class Productos {
@@ -26,6 +27,7 @@ class Productos {
       //asigno ID al producto.
       const id = this.productos.length + 1;
       producto.id = id;
+      producto.timestamp = moment(Date.now()).format("L");
 
       this.productos.push(producto);
 
@@ -54,20 +56,21 @@ class Productos {
       const productoEncontrado = this.productos.filter(
         (p) => p.id === parseInt(id),
       );
-      console.log(productoEncontrado);
+      console.log("Producto a actualizar ->", productoEncontrado);
 
-      
       productoEncontrado.id = parseInt(id);
       productoEncontrado.title = producto.title;
       productoEncontrado.price = producto.price;
       productoEncontrado.thumbnail = producto.thumbnail;
-     
+      productoEncontrado.descripcion = producto.descripcion;
+      productoEncontrado.codigo = producto.codigo;
+      productoEncontrado.stock = producto.stock;
 
       let index = this.productos.findIndex((x) => x.id === parseInt(id));
 
-      console.log('index ->',index);
+      console.log("index ->", index);
       this.productos.splice(index, 1, ...productoEncontrado);
-      console.log('nuevo listado de productos',this.productos)
+      console.log("nuevo listado de productos", this.productos);
 
       // const json_productos = JSON.stringify(this.productos);
       // fs.writeFileSync("src/data/productos.json", json_productos, "utf-8");
@@ -86,7 +89,7 @@ class Productos {
       let productos = this.productos.filter(
         (producto) => producto.id != parseInt(id),
       );
-      console.log(productos);
+      console.log("producto a agregar en el carrito ->", productos);
 
       const json_productos = JSON.stringify(productos);
       fs.writeFileSync("src/data/productos.json", json_productos, "utf-8");

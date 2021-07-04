@@ -1,1 +1,28 @@
-[{"title":"Escuadra","price":999999,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png","id":1},{"title":"Calculadora","price":234.56,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png","id":2},{"title":"test 3","price":14,"thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png","id":3}]
+[{
+    "nombre": "Escuadra",
+    "precio": 234.52,
+    "url": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
+    "id": 1,
+    "descripcion": "test Escuadra",
+    "codigo": "ABCD1",
+    "stock": 5,
+    "timestamp": "07/03/2021"
+}, {
+    "nombre": "Calculadora",
+    "precio": 234.56,
+    "url": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
+    "id": 2,
+    "descripcion": "test calculadora",
+    "codigo": "ABCD2",
+    "stock": 5,
+    "timestamp": "07/03/2021"
+}, {
+    "nombre": "Escuadra 2",
+    "precio": 999999,
+    "url": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
+    "id": 3,
+    "descripcion": "test descripción",
+    "codigo": "ABCD1",
+    "stock": 10,
+    "timestamp": "07/03/2021"
+}]

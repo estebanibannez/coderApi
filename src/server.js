@@ -7,13 +7,9 @@ const cors = require("cors");
 const path = require("path");
 const morgan = require("morgan");
 
-const CarritoRoute = require("./routes/carrito.router");
-const ProductosRoute = require("./routes/productos.router");
-
 //RUN SERVE INITIALIZATION
 
 // require("./database");
-
 
 //CABECERAS
 app.use(function (req, res, next) {
@@ -27,15 +23,14 @@ app.use(function (req, res, next) {
 
 //MIDLEWARES
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(morgan(`dev`));
 
 //ROUTERS
-app.use("/api/productos", ProductosRoute);
-app.use("/api/carrito", CarritoRoute);
+app.use("/api/productos", require("./routes/productos.router"));
+app.use("/api/carrito", require("./routes/carrito.router"));
 
 //static files
 app.use(express.static(path.join(__dirname, "public")));
