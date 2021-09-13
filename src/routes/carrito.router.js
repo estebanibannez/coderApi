@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../api/carrito.controller");
-const utils = require("../utils/mail");
 
 router.get("/carrito/listar", middlewareCarrito, async (req, res) => {
   try {
@@ -61,7 +60,7 @@ router.delete("/carrito/borrar/:id", middlewareCarrito, async (req, res) => {
 router.post("/carrito/finalizar/:id", middlewareCarrito, async (req, res) => {
   try {
     let { id } = req.params;
-    let resultado = await controller.finalizarCompra(id);
+    let resultado = await controller.finCompra(id);
     return res.json({
       status: 200,
       message: "OK",
