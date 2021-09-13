@@ -28,7 +28,7 @@ class CarritoController {
 
       sms.sendSMS(
         `Listado de productos que compraste:  ${carrito.productos}`,
-        "whatsapp:+14155238886",
+        "whatsapp:+19473334705",
         `whatsapp:${config.NUMBERWSP}`,
       );
 
@@ -45,6 +45,7 @@ class CarritoController {
       throw error;
     }
   }
+  
   async buscarPorId(id) {
     try {
       return await ModelCarrito.findById(id);

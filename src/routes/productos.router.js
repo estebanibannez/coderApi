@@ -62,12 +62,11 @@ router.put("/productos/actualizar/:id", middlewareAdmin, async (req, res) => {
 router.delete("/productos/borrar/:id", middlewareAdmin, async (req, res) => {
   try {
     let { id } = req.params;
-    let producto = req.body;
 
     let resultado = await controller.eliminar(id);
     return res.json({
       status: 200,
-      message: "OK",
+      message: "OK - Producto eliminado éxitosamente.",
       data: resultado,
     });
   } catch (error) {
