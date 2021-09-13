@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const dotenv = require('dotenv');
 const config = require("./config/config.js");
 
 const cors = require("cors");
@@ -29,8 +29,9 @@ app.use(cors());
 app.use(morgan(`dev`));
 
 //ROUTERS
-app.use("/api/productos", require("./routes/productos.router"));
-app.use("/api/carrito", require("./routes/carrito.router"));
+app.use("/api", require("./routes/productos.router"));
+app.use("/api", require("./routes/carrito.router"));
+// app.use("/api", require("./routes/usuario.router"));
 
 //static files
 app.use(express.static(path.join(__dirname, "public")));
