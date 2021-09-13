@@ -1,16 +1,16 @@
 const express = require("express");
 const app = express();
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 const config = require("./config/config.js");
-
+const passport = require("passport");
 const cors = require("cors");
 const path = require("path");
 const morgan = require("morgan");
 
 //RUN SERVE INITIALIZATION
 
-// require("./database");
-
+require("./data/db");
+require(`./passport/local-auth`);
 //CABECERAS
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -28,10 +28,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(morgan(`dev`));
 
+app.use(
+  require("express-session")({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: false,
+  }),
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 //ROUTERS
 app.use("/api", require("./routes/productos.router"));
 app.use("/api", require("./routes/carrito.router"));
-// app.use("/api", require("./routes/usuario.router"));
+app.use("/api", require("./routes/usuario.router"));
 
 //static files
 app.use(express.static(path.join(__dirname, "public")));
@@ -44,4 +54,5 @@ app.listen(config.PORT, config.HOST, () => {
   console.log(`#########     AMBIENTE  ###########`);
   console.log(`#########   ${config.NODE_ENV} ###########`);
   console.log(`###################################`);
+  console.log(`Servidor express escuchando en http://localhost:${config.PORT}`)
 });

@@ -21,7 +21,7 @@ router.get("/productos/listar/:id", async (req, res) => {
     let resultado = await controller.buscarPorId(id);
     return res.json({
       status: 200,
-      message: "OK",
+      message: "OK - Producto encontrado éxitosamente.",
       data: resultado,
     });
   } catch (error) {
@@ -35,7 +35,7 @@ router.post("/productos/guardar", middlewareAdmin, async (req, res) => {
     let resultado = await controller.guardar(producto);
     return res.json({
       status: 200,
-      message: "OK",
+      message: "OK - Producto guardado éxitosamente.",
       data: resultado,
     });
   } catch (error) {
@@ -51,7 +51,7 @@ router.put("/productos/actualizar/:id", middlewareAdmin, async (req, res) => {
     let resultado = await controller.update(id, producto);
     return res.json({
       status: 200,
-      message: "OK",
+      message: "OK - Producto actualizado éxitosamente.",
       data: resultado,
     });
   } catch (error) {
